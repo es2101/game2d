@@ -799,11 +799,11 @@ public class UI {
 		// FULL SCREEN ON/OF
 		textX = frameX + gp.tileSize;
 		textY += gp.tileSize*2;
-		g2.drawString("Introduce", textX, textY);
+		g2.drawString("Full Screen", textX, textY);
 		if(commandNum == 0) {
 			g2.drawString(">", textX-25, textY);
 			if(gp.keyH.enterPressed == true) {
-				if(gp.fullScreenOn = false) {
+				if(gp.fullScreenOn == false) {
 					gp.fullScreenOn = true;
 				}
 				else if(gp.fullScreenOn == true) {
@@ -867,9 +867,9 @@ public class UI {
 		textX = frameX + (int) (gp.tileSize*4.5);
 		textY = frameY + gp.tileSize*2 + 24;
 		g2.setStroke(new BasicStroke(3));
-//		g2.drawRect(textX, textY, 24, 24);
+		g2.drawRect(textX, textY, 24, 24);
 		if(gp.fullScreenOn == true) {
-//			g2.fillRect(textX, textY, 24, 24);
+			g2.fillRect(textX, textY, 24, 24);
 		}
 		
 		// MUSIC VOLUME
@@ -896,7 +896,7 @@ public class UI {
 		int textX = frameX + gp.tileSize;
 		int textY = frameY + gp.tileSize*3;
 
-		currentDialogue = "This is an exciting treasure \nhunting adventure!";
+		currentDialogue = "The change will take \neffect after restarting \nthe game.";
 		
 		for(String line: currentDialogue.split("\n")) {
 			g2.drawString(line, textX, textY);
