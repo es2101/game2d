@@ -5,6 +5,7 @@ import entity.NPC_BigRock;
 import entity.NPC_First;
 import entity.NPC_Merchant;
 import monster.MON_Bat;
+import monster.MON_Ghost;
 import monster.MON_GreenSlime;
 import monster.MON_Orc;
 import monster.MON_Olap;
@@ -14,6 +15,8 @@ import monster.MON_Xacuop;
 import monster.MON_Minatourus;
 import monster.MON_VipMinatourus;
 import monster.MON_Voi;
+import monster.MON_HaiTac;
+import monster.MON_SuperVoi;
 import monster.MON_TuanLoc;
 import object.OBJ_Axe;
 import object.OBJ_BlueHeart;
@@ -231,7 +234,7 @@ public class AssetSetter {
 		 * i++;
 		 */
 
-		gp.monster[mapNum][i] = new MON_VipMinatourus(gp);
+		gp.monster[mapNum][i] = new MON_Ghost(gp);
 		gp.monster[mapNum][i].worldX = gp.tileSize * 22;
 		gp.monster[mapNum][i].worldY = gp.tileSize * 22;
 		i++;
