@@ -214,6 +214,7 @@ public class Player extends Entity {
 			attackRight1 = setup("/player/boy_attack_right_1", gp.tileSize * 2, gp.tileSize);
 			attackRight2 = setup("/player/boy_attack_right_2", gp.tileSize * 2, gp.tileSize);
 		}
+
 		if (currentWeapon.type == type_axe) {
 			attackUp1 = setup("/player/boy_axe_up_1", gp.tileSize, gp.tileSize * 2);
 			attackUp2 = setup("/player/boy_axe_up_2", gp.tileSize, gp.tileSize * 2);
