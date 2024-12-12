@@ -3,14 +3,14 @@ package object;
 import entity.Entity;
 import main.GamePanel;
 
-public class OBJ_Shield_Blue extends Entity{
+public class OBJ_Shield_Blue extends Entity {
 
 	public static final String objName = "Crystal Shield";
-	
+
 	public OBJ_Shield_Blue(GamePanel gp) {
 		super(gp);
-		
-		type = type_shield;
+
+		type = type_blueshield;
 		name = objName;
 		down1 = setup("/objects/shield_blue", gp.tileSize, gp.tileSize);
 		defenseValue = 2;

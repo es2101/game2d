@@ -3,14 +3,14 @@ package object;
 import entity.Entity;
 import main.GamePanel;
 
-public class OBJ_SuperSword extends Entity {
+public class OBJ_Super_Sword extends Entity {
 
     public static final String objName = "ngư thần kiếm";
 
-    public OBJ_SuperSword(GamePanel gp) {
+    public OBJ_Super_Sword(GamePanel gp) {
         super(gp);
 
-        type = type_sword;
+        type = type_supersword;
         name = objName;
         down1 = setup("/objects/supersword", gp.tileSize, gp.tileSize);
         attackValue = 1;

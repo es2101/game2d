@@ -10,6 +10,8 @@ import object.OBJ_Potion_Blue;
 import object.OBJ_Shield_Blue;
 import object.OBJ_Shield_Wood;
 import object.OBJ_Sword_Normal;
+import object.OBJ_Super_Sword;
+import object.OBJ_MegaSuperSword;
 
 public class NPC_Merchant extends Entity {
 
@@ -62,6 +64,8 @@ public class NPC_Merchant extends Entity {
 		inventory.add(new OBJ_Potion_Blue(gp));
 		inventory.add(new OBJ_Key(gp));
 		inventory.add(new OBJ_Sword_Normal(gp));
+		inventory.add(new OBJ_Super_Sword(gp));
+		inventory.add(new OBJ_MegaSuperSword(gp));
 		inventory.add(new OBJ_Axe(gp));
 		inventory.add(new OBJ_Shield_Wood(gp));
 		inventory.add(new OBJ_Shield_Blue(gp));

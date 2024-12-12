@@ -15,12 +15,16 @@ import main.GamePanel;
 import main.KeyHandler;
 import main.UtilityTool;
 import object.OBJ_Sword_Normal;
+import object.OBJ_Super_Sword;
+import object.OBJ_MegaSuperSword;
 import object.OBJ_Axe;
 import object.OBJ_Fireball;
 import object.OBJ_Key;
 import object.OBJ_Potion_Red;
 import object.OBJ_Rock;
 import object.OBJ_Shield_Wood;
+import object.OBJ_Shield_Blue;
+import object.OBJ_SuperShield;
 
 public class Player extends Entity {
 
@@ -56,10 +60,12 @@ public class Player extends Entity {
 		// attackArea.height = 36;
 
 		setDefaultValues();
-		// getImage();
-		// getAttackImage();
-		// getGuardImage();
-		// setItems();
+		/*
+		 * getImage();
+		 * getAttackImage();
+		 * getGuardImage();
+		 * setItems();
+		 */
 
 	}
 
@@ -91,7 +97,7 @@ public class Player extends Entity {
 		exp = 0;
 		nextLevelExp = 5;
 		coin = 500;
-		currentWeapon = new OBJ_Sword_Normal(gp);
+		currentWeapon = new OBJ_Super_Sword(gp);
 		currentShield = new OBJ_Shield_Wood(gp);
 		currentLight = null;
 		projectile = new OBJ_Fireball(gp);
@@ -154,6 +160,7 @@ public class Player extends Entity {
 	}
 
 	public int getDefense() {
+		motion1_duration = currentShield.motion1_duration;
 		return defense = dexterity * currentShield.defenseValue;
 	}
 
@@ -215,6 +222,43 @@ public class Player extends Entity {
 			attackRight2 = setup("/player/boy_attack_right_2", gp.tileSize * 2, gp.tileSize);
 		}
 
+		if (currentWeapon.type == type_supersword) {
+			attackUp1 = setup("/player/boy_super_sword_attack_up_1", gp.tileSize,
+					gp.tileSize * 2);
+			attackUp2 = setup("/player/boy_super_sword_attack_up_2", gp.tileSize,
+					gp.tileSize * 2);
+			attackDown1 = setup("/player/boy_super_sword_attack_down_1", gp.tileSize,
+					gp.tileSize * 2);
+			attackDown2 = setup("/player/boy_super_sword_attack_down_2", gp.tileSize,
+					gp.tileSize * 2);
+			attackLeft1 = setup("/player/boy_super_sword_attack_left_1", gp.tileSize * 2,
+					gp.tileSize);
+			attackLeft2 = setup("/player/boy_super_sword_attack_left_2", gp.tileSize * 2,
+					gp.tileSize);
+			attackRight1 = setup("/player/boy_super_sword_attack_right_1", gp.tileSize * 2,
+					gp.tileSize);
+			attackRight2 = setup("/player/boy_super_sword_attack_right_2", gp.tileSize * 2,
+					gp.tileSize);
+		}
+		if (currentWeapon.type == type_megasupersword) {
+			attackUp1 = setup("/player/boy_megasupersword_attack_up_1", gp.tileSize,
+					gp.tileSize * 2);
+			attackUp2 = setup("/player/boy_megasupersword_attack_up_2", gp.tileSize,
+					gp.tileSize * 2);
+			attackDown1 = setup("/player/boy_megasupersword_attack_down_1", gp.tileSize,
+					gp.tileSize * 2);
+			attackDown2 = setup("/player/boy_megasupersword_attack_down_2", gp.tileSize,
+					gp.tileSize * 2);
+			attackLeft1 = setup("/player/boy_megasupersword_attack_left_1", gp.tileSize *
+					2, gp.tileSize);
+			attackLeft2 = setup("/player/boy_megasupersword_attack_left_2", gp.tileSize *
+					2, gp.tileSize);
+			attackRight1 = setup("/player/boy_megasupersword_attack_right_1", gp.tileSize
+					* 2, gp.tileSize);
+			attackRight2 = setup("/player/boy_megasupersword_attack_right_2", gp.tileSize
+					* 2, gp.tileSize);
+		}
+
 		if (currentWeapon.type == type_axe) {
 			attackUp1 = setup("/player/boy_axe_up_1", gp.tileSize, gp.tileSize * 2);
 			attackUp2 = setup("/player/boy_axe_up_2", gp.tileSize, gp.tileSize * 2);
@@ -239,11 +283,25 @@ public class Player extends Entity {
 	}
 
 	public void getGuardImage() {
+		if (currentWeapon.type == type_shield) {
+			guardUp = setup("/player/boy_guard_up", gp.tileSize, gp.tileSize);
+			guardDown = setup("/player/boy_guard_down", gp.tileSize, gp.tileSize);
+			guardLeft = setup("/player/boy_guard_left", gp.tileSize, gp.tileSize);
+			guardRight = setup("/player/boy_guard_right", gp.tileSize, gp.tileSize);
+		}
 
-		guardUp = setup("/player/boy_guard_up", gp.tileSize, gp.tileSize);
-		guardDown = setup("/player/boy_guard_down", gp.tileSize, gp.tileSize);
-		guardLeft = setup("/player/boy_guard_left", gp.tileSize, gp.tileSize);
-		guardRight = setup("/player/boy_guard_right", gp.tileSize, gp.tileSize);
+		if (currentWeapon.type == type_blueshield) {
+			guardUp = setup("/player/boy_blueguard_up", gp.tileSize, gp.tileSize);
+			guardDown = setup("/player/boy_blueguard_down", gp.tileSize, gp.tileSize);
+			guardLeft = setup("/player/boy_blueguard_left", gp.tileSize, gp.tileSize);
+			guardRight = setup("/player/boy_blueguard_right", gp.tileSize, gp.tileSize);
+		}
+		if (currentWeapon.type == type_supershield) {
+			guardUp = setup("/player/boy_superguard_up", gp.tileSize, gp.tileSize);
+			guardDown = setup("/player/boy_superguard_down", gp.tileSize, gp.tileSize);
+			guardLeft = setup("/player/boy_superguard_left", gp.tileSize, gp.tileSize);
+			guardRight = setup("/player/boy_superguard_right", gp.tileSize, gp.tileSize);
+		}
 
 	}
 
@@ -289,9 +347,9 @@ public class Player extends Entity {
 
 		else if (attacking == true) {
 			attacking();
-		} else if (keyH.spacePressed == true) {
-			guarding = true;
-			guardCounter++;
+		} else if (defending == true) {
+			defending();
+
 		}
 
 		else if (keyH.upPressed == true || keyH.downPressed == true ||
@@ -605,16 +663,20 @@ public class Player extends Entity {
 
 			Entity selectedItem = inventory.get(itemIndex);
 
-			if (selectedItem.type == type_sword || selectedItem.type == type_axe || selectedItem.type == type_pickaxe) {
+			if (selectedItem.type == type_sword || selectedItem.type == type_supersword
+					|| selectedItem.type == type_megasupersword || selectedItem.type == type_axe
+					|| selectedItem.type == type_pickaxe) {
 
 				currentWeapon = selectedItem;
 				attack = getAttack();
 				getAttackImage();
 			}
-			if (selectedItem.type == type_shield) {
+			if (selectedItem.type == type_shield || selectedItem.type == type_blueshield
+					|| selectedItem.type == type_supershield) {
 
 				currentShield = selectedItem;
 				defense = getDefense();
+				getGuardImage();
 			}
 			if (selectedItem.type == type_light) {
 

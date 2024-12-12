@@ -18,7 +18,10 @@ import object.OBJ_Potion_Red;
 import object.OBJ_Rock;
 import object.OBJ_Shield_Blue;
 import object.OBJ_Shield_Wood;
+import object.OBJ_SuperShield;
 import object.OBJ_Sword_Normal;
+import object.OBJ_Super_Sword;
+import object.OBJ_MegaSuperSword;
 import object.OBJ_Tent;
 
 public class EntityGenerator {
@@ -85,8 +88,17 @@ public class EntityGenerator {
 			case OBJ_Shield_Wood.objName:
 				obj = new OBJ_Shield_Wood(gp);
 				break;
+			case OBJ_SuperShield.objName:
+				obj = new OBJ_SuperShield(gp);
+				break;
 			case OBJ_Sword_Normal.objName:
 				obj = new OBJ_Sword_Normal(gp);
+				break;
+			case OBJ_Super_Sword.objName:
+				obj = new OBJ_Super_Sword(gp);
+				break;
+			case OBJ_MegaSuperSword.objName:
+				obj = new OBJ_MegaSuperSword(gp);
 				break;
 			case OBJ_Tent.objName:
 				obj = new OBJ_Tent(gp);

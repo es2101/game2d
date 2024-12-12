@@ -10,7 +10,8 @@ public class OBJ_MegaSuperSword extends Entity {
     public OBJ_MegaSuperSword(GamePanel gp) {
         super(gp);
 
-        type = type_sword;
+        type = type_megasupersword;
+        
         name = objName;
         down1 = setup("/objects/megasupersword", gp.tileSize, gp.tileSize);
         attackValue = 1;

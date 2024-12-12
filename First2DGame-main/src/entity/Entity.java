@@ -42,6 +42,7 @@ public class Entity {
 	public boolean collisionOn = false;
 	public boolean invincible = false;
 	public boolean attacking = false;
+	public boolean defending = false;
 	public boolean alive = true;
 	public boolean dying = false;
 	public boolean hpBarOn = false;
@@ -121,6 +122,10 @@ public class Entity {
 	public final int type_obstacle = 8;
 	public final int type_light = 9;
 	public final int type_pickaxe = 10;
+	public final int type_supersword = 11;
+	public final int type_megasupersword = 12;
+	public final int type_blueshield = 13;
+	public final int type_supershield = 14;
 
 	public Entity(GamePanel gp) {
 		this.gp = gp;
@@ -371,6 +376,8 @@ public class Entity {
 				}
 			} else if (attacking == true) {
 				attacking();
+			} else if (defending == true) {
+				defending();
 			} else {
 				setAction();
 				checkCollision();
@@ -637,6 +644,64 @@ public class Entity {
 			spriteNum = 1;
 			spriteCounter = 0;
 			attacking = false;
+		}
+	}
+
+	public void defending() {
+		spriteCounter++;
+
+		if (spriteCounter <= motion1_duration) {
+			spriteNum = 1; // Khung hình phòng thủ duy nhất
+
+			// Lưu trữ tạm thời các giá trị gốc của worldX, worldY, solidArea
+			int currentWorldX = worldX;
+			int currentWorldY = worldY;
+			int solidAreaWidth = solidArea.width;
+			int solidAreaHeight = solidArea.height;
+
+			// Điều chỉnh vùng va chạm dựa trên hướng phòng thủ
+			switch (direction) {
+				case "up":
+					worldY -= solidAreaDefaultX / 4;
+					break;
+				case "down":
+					worldY += attackArea.height;
+					break;
+				case "left":
+					worldX -= attackArea.width;
+					break;
+				case "right":
+					worldX += attackArea.height;
+					break;
+				// ... các hướng khác tương tự
+			}
+
+			// Kiểm tra va chạm và xử lý sát thương
+			if (type == type_monster) {
+				if (gp.cChecker.checkPlayer(this) == true) {
+					damagePlayer(attack);
+				}
+			} else { // Player
+						// Check monster collision with the update worldX, worldY, and solidArea
+				int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+				gp.player.damageMonster(monsterIndex, this, attack, currentWeapon.knockBackPower);
+
+				int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+				gp.player.damageInteractiveTile(iTileIndex);
+
+				int projectileIndex = gp.cChecker.checkEntity(this, gp.projectile);
+				gp.player.damageProjectile(projectileIndex);
+			}
+
+			// Khôi phục lại vị trí và kích thước ban đầu của solidArea
+			worldX = currentWorldX;
+			worldY = currentWorldY;
+			solidArea.width = solidAreaWidth;
+			solidArea.height = solidAreaHeight;
+		} else {
+			spriteNum = 1; // Đặt lại về khung hình đầu (nếu cần)
+			spriteCounter = 0;
+			defending = false; // Kết thúc trạng thái phòng thủ
 		}
 	}
 
